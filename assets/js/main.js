@@ -6,7 +6,7 @@
 * License: https://bootstrapmade.com/license/
 */
 
-(function() {
+(function () {
   "use strict";
 
   /**
@@ -50,7 +50,7 @@
    * Toggle mobile nav dropdowns
    */
   document.querySelectorAll('.navmenu .toggle-dropdown').forEach(navmenu => {
-    navmenu.addEventListener('click', function(e) {
+    navmenu.addEventListener('click', function (e) {
       if (document.querySelector('.mobile-nav-active')) {
         e.preventDefault();
         this.parentNode.classList.toggle('active');
@@ -115,7 +115,7 @@
    * Init swiper sliders
    */
   function initSwiper() {
-    document.querySelectorAll('.swiper').forEach(function(swiper) {
+    document.querySelectorAll('.swiper').forEach(function (swiper) {
       let config = JSON.parse(swiper.querySelector('.swiper-config').innerHTML.trim());
       new Swiper(swiper, config);
     });
@@ -139,7 +139,7 @@
     new Waypoint({
       element: item,
       offset: '80%',
-      handler: function(direction) {
+      handler: function (direction) {
         let progress = item.querySelectorAll('.progress .progress-bar');
         progress.forEach(el => {
           el.style.width = el.getAttribute('aria-valuenow') + '%';
@@ -151,13 +151,13 @@
   /**
    * Init isotope layout and filters
    */
-  document.querySelectorAll('.isotope-layout').forEach(function(isotopeItem) {
+  document.querySelectorAll('.isotope-layout').forEach(function (isotopeItem) {
     let layout = isotopeItem.getAttribute('data-layout') ?? 'masonry';
     let filter = isotopeItem.getAttribute('data-default-filter') ?? '*';
     let sort = isotopeItem.getAttribute('data-sort') ?? 'original-order';
 
     let initIsotope;
-    imagesLoaded(isotopeItem.querySelector('.isotope-container'), function() {
+    imagesLoaded(isotopeItem.querySelector('.isotope-container'), function () {
       initIsotope = new Isotope(isotopeItem.querySelector('.isotope-container'), {
         itemSelector: '.isotope-item',
         layoutMode: layout,
@@ -166,8 +166,8 @@
       });
     });
 
-    isotopeItem.querySelectorAll('.isotope-filters li').forEach(function(filters) {
-      filters.addEventListener('click', function() {
+    isotopeItem.querySelectorAll('.isotope-filters li').forEach(function (filters) {
+      filters.addEventListener('click', function () {
         isotopeItem.querySelector('.isotope-filters .filter-active').classList.remove('filter-active');
         this.classList.add('filter-active');
         initIsotope.arrange({
@@ -184,7 +184,7 @@
   /**
    * Correct scrolling position upon page load for URLs containing hash links.
    */
-  window.addEventListener('load', function(e) {
+  window.addEventListener('load', function (e) {
     if (window.location.hash) {
       if (document.querySelector(window.location.hash)) {
         setTimeout(() => {
@@ -222,3 +222,45 @@
   document.addEventListener('scroll', navmenuScrollspy);
 
 })();
+
+// Mis js 
+
+document.addEventListener('DOMContentLoaded', function () {
+  document.getElementById('buscarUsuarios').addEventListener('input', function () {
+    var busqueda = this.value;
+
+    if (busqueda.trim() === '') {
+      document.getElementById('listaUsuarios').innerHTML = '';
+      return;
+    }
+
+    fetch('bd/buscarUsuarios.php', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: 'busqueda=' + busqueda,
+    })
+      .then(response => response.text())
+      .then(data => {
+        if (data.trim() === '') {
+          // Si la respuesta está vacía, mostrar un mensaje de "No se encontraron usuarios"
+          document.getElementById('listaUsuarios').innerHTML = '<p>No se encontraron usuarios</p>';
+        } else {
+          // Si la respuesta contiene usuarios, mostrar la lista de usuarios
+          document.getElementById('listaUsuarios').innerHTML = data;
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+  });
+});
+
+document.getElementById('m1').addEventListener('click', function (event) {
+    window.location.href = "assets/pdf/manual_instalacion_ort.pdf";
+});
+
+document.getElementById('m2').addEventListener('click', function (event) {
+  window.location.href = "assets/pdf/Manual_usuario_ort.pdf";
+});
