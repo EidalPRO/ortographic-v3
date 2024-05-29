@@ -25,7 +25,7 @@ if (!isset($_SESSION['usuario'])) {
     <nav class="navbar">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">
-                <img src="assets/imagenes/logoOrtographic.webp" width="50" alt="Logo Ortographic">
+                <img src="assets/img/logoOrtographic.webp" width="50" alt="Logo Ortographic">
             </a>
             <p id="contador"></p>
             <!-- <p class="nav-item text-center" aria-current="page" id="sala_id">Sala: </p> -->

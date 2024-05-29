@@ -343,10 +343,10 @@ function enviarDatos() {
                         title: "Felicidades!",
                         text: `Acabas de obtener el logro ${logroAMostrar}. 
                         \n Por haber conseguido el 100% de efectividad en el tema de ${logroTema}.`,
-                        imageUrl: `assets/imagenes/logros/${logroImagen}`,
+                        imageUrl: `assets/img/logros/${logroImagen}`,
                         imageWidth: 200,
                         imageHeight: 200,
-                        imageAlt: "Custom image"
+                        imageAlt: "Logro"
                     }).then(() => {
                         if (logroFinal) {
                             mostrarLogroFinal();
@@ -377,7 +377,7 @@ function mostrarLogroFinal() {
         title: "Felicidades!",
         text: `Acabas de obtener el logro Sabio Ortográfico. 
     \n Por haber conseguido el 100% de efectividad todos los temas.`,
-        imageUrl: `assets/imagenes/logros/logro-final.webp`,
+        imageUrl: `assets/img/logros/logro-final.webp`,
         imageWidth: 200,
         imageHeight: 200,
         imageAlt: "Custom image"

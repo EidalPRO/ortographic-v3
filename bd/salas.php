@@ -88,7 +88,7 @@ function salaExistente($conexion)
                 }
             } else {
                 // Si la sala no existe, mostrar un mensaje de error
-                header("location: ../selecionar_sala.php?error=sala_no_encontrada");
+                header("location: ../index.php?error=sala_no_encontrada");
                 exit();
             }
         }
@@ -126,7 +126,7 @@ function salaExistente($conexion)
                 exit();
             } else {
                 // Si la sala no existe, mostrar un mensaje de error
-                header("location: ../selecionar_sala.php?error=sala_no_encontrado");
+                header("location: ../index.php?error=sala_no_encontrado");
                 exit();
             }
         }
@@ -148,7 +148,7 @@ function nuevaSala($conexion)
 
         if ($resultado_existencia_codigo->num_rows > 0) {
             // Si el código de sala ya existe, mostrar un mensaje de error y salir del script
-            header("location: ../selecionar_sala.php?error=sala_existente");
+            header("location: ../index.php?error=sala_existente");
             exit();
         } else {
             // Recibir el nombre de la sala

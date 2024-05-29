@@ -1,4 +1,4 @@
-<h6?php
+<?php
 session_start();
 ?>
 <!DOCTYPE html>
@@ -41,7 +41,6 @@ session_start();
 
       <a href="index.html" class="logo d-flex align-items-center me-auto">
         <!-- Uncomment the line below if you also wish to use an image logo -->
-        <!-- <img src="assets/img/logoOrtographic.webp" alt="Logro de Ortographic"> -->
         <h1 class="sitename">Ortographic</h1>
       </a>
 
@@ -55,7 +54,7 @@ session_start();
           <li><a href="#creditos">Creditos</a></li>
           <?php
           if (isset($_SESSION['usuario'])) {
-            echo '<li><a type="button"  data-bs-toggle="modal" data-bs-target="#MiPerfil" style="color:white;">Mi Perfil</a></li>';
+            echo '<li><a type="button"  data-bs-toggle="modal" data-bs-target="#MiPerfil" style="color: gray;" id="miPer">Mi Perfil</a></li>';
           } else {
             echo '<li><a href="inicio_sesion.php">Iniciar sesión</a></li>';
           }
@@ -184,9 +183,6 @@ session_start();
       </div>
 
     </section><!-- /Pricing Section -->
-
-
-    </section><!-- /Why Us Section -->
 
     <!-- Services Section -->
     <section id="manual" class="services section">
@@ -923,7 +919,7 @@ session_start();
                 <h3 class="modal-title fs-5" id="staticBackdropLabel">Salas privadas</h3>
                 <h5>Disfruta jugando en una sala privada con tus amigos, puedes crear una sala privada o unirte a una utilizando su id.</h5>
                 <br>
-                <div class="col-12 col-lg-6">
+                <div class="col-12 col-md-6">
                   <div class="cir d-flex flex-wrap align-items-center justify-content-center">
                     <a type="button" data-bs-toggle="modal" data-bs-target="#salasModal2" id="ing" href="">
                       <i class="bi bi-cloud-plus"></i>
@@ -931,7 +927,7 @@ session_start();
                   </div>
                   <p>Crear una sala</p>
                 </div>
-                <div class="col-12 col-lg-6">
+                <div class="col-12 col-md-6">
                   <div class="col-12 col-lg-6">
                     <div class="cir d-flex flex-wrap align-items-center justify-content-center">
                       <a type="button" data-bs-toggle="modal" data-bs-target="#salasModal3" id="exis" href="">
@@ -1066,7 +1062,7 @@ session_start();
             </form>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#salasModal2">
+            <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#salasModal">
               <span class="circle1"></span>
               <span class="circle2"></span>
               <span class="circle3"></span>
@@ -1079,6 +1075,33 @@ session_start();
         </div>
       </div>
     </div>
+
+    <?php
+    if (isset($_GET['error'])) {
+      $error = $_GET['error'];
+      if ($error === "sala_no_encontrada") {
+        echo '
+                    <script>
+                        Swal.fire({
+                            icon: "error",
+                            title: "Oops...",
+                            text: "Parece que la sala no existe, verifica que el id sea correcto y intentalo de nuevo."
+                         });
+                    </script>
+                ';
+      } else if ($error === 'sala_existente') {
+        echo '
+                    <script>
+                        Swal.fire({
+                            icon: "error",
+                            title: "Oops...",
+                            text: "Este código de sala ya existe intente de nuevo."
+                         });
+                    </script>
+                ';
+      }
+    }
+    ?>
 
     <!-- fin salas modal  -->
 

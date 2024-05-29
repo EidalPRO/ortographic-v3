@@ -969,117 +969,6 @@ section,
   transform: translate(5px, 0);
 }
 
-/*--------------------------------------------------------------
-# Why Us Section
---------------------------------------------------------------*/
-.why-us {
-  --background-color: color-mix(in srgb, var(--heading-color), transparent 95%);
-  padding: 30px 0;
-}
-
-.why-us .content h3 {
-  font-weight: 400;
-  font-size: 34px;
-}
-
-.why-us .content p {
-  color: color-mix(in srgb, var(--default-color), transparent 30%);
-}
-
-.why-us .faq-container .faq-item {
-  position: relative;
-  padding: 20px;
-  margin-bottom: 20px;
-  box-shadow: 0px 5px 25px 0px color-mix(in srgb, var(--default-color), transparent 90%);
-  background-color: var(--contrast-color);
-  overflow: hidden;
-}
-
-.why-us .faq-container .faq-item:last-child {
-  margin-bottom: 0;
-}
-
-.why-us .faq-container .faq-item h3 {
-  font-weight: 500;
-  font-size: 17px;
-  line-height: 24px;
-  margin: 0 30px 0 0;
-  transition: 0.3s;
-  cursor: pointer;
-}
-
-.why-us .faq-container .faq-item h3 span {
-  color: var(--accent-color);
-  padding-right: 5px;
-  font-weight: 600;
-}
-
-.why-us .faq-container .faq-item h3:hover {
-  color: var(--accent-color);
-}
-
-.why-us .faq-container .faq-item .faq-content {
-  display: grid;
-  grid-template-rows: 0fr;
-  transition: 0.3s ease-in-out;
-  visibility: hidden;
-  opacity: 0;
-}
-
-.why-us .faq-container .faq-item .faq-content p {
-  margin-bottom: 0;
-  overflow: hidden;
-}
-
-.why-us .faq-container .faq-item .faq-icon {
-  position: absolute;
-  top: 22px;
-  left: 20px;
-  font-size: 22px;
-  line-height: 0;
-  transition: 0.3s;
-  color: var(--accent-color);
-}
-
-.why-us .faq-container .faq-item .faq-toggle {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  font-size: 16px;
-  line-height: 0;
-  transition: 0.3s;
-  cursor: pointer;
-}
-
-.why-us .faq-container .faq-item .faq-toggle:hover {
-  color: var(--accent-color);
-}
-
-.why-us .faq-container .faq-active h3 {
-  color: var(--accent-color);
-}
-
-.why-us .faq-container .faq-active .faq-content {
-  grid-template-rows: 1fr;
-  visibility: visible;
-  opacity: 1;
-  padding-top: 10px;
-}
-
-.why-us .faq-container .faq-active .faq-toggle {
-  transform: rotate(90deg);
-  color: var(--accent-color);
-}
-
-.why-us .why-us-img {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.why-us .why-us-img img {
-  max-height: 70%;
-}
 
 /*--------------------------------------------------------------
 # Services Section
@@ -1131,70 +1020,6 @@ section,
   color: var(--accent-color);
 }
 
-/*--------------------------------------------------------------
-# Call To Action Section
---------------------------------------------------------------*/
-.call-to-action {
-  --background-color: #000000;
-  --default-color: #ffffff;
-  --contrast-color: #ffffff;
-  padding: 120px 0;
-  position: relative;
-  clip-path: inset(0);
-}
-
-.call-to-action img {
-  position: fixed;
-  top: 0;
-  left: 0;
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: 1;
-}
-
-.call-to-action:before {
-  content: "";
-  background: color-mix(in srgb, var(--background-color), transparent 35%);
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-}
-
-.call-to-action .container {
-  position: relative;
-  z-index: 3;
-}
-
-.call-to-action h3 {
-  color: var(--default-color);
-  font-size: 28px;
-  font-weight: 700;
-}
-
-.call-to-action p {
-  color: var(--default-color);
-}
-
-.call-to-action .cta-btn {
-  font-family: var(--heading-font);
-  font-weight: 500;
-  font-size: 16px;
-  letter-spacing: 1px;
-  display: inline-block;
-  padding: 12px 40px;
-  border-radius: 50px;
-  transition: 0.5s;
-  margin: 10px;
-  border: 2px solid var(--contrast-color);
-  color: var(--contrast-color);
-}
-
-.call-to-action .cta-btn:hover {
-  background: var(--accent-color);
-  border: 2px solid var(--accent-color);
-}
 
 /*--------------------------------------------------------------
 # Portfolio Section
@@ -1639,251 +1464,68 @@ section,
 }
 
 /*--------------------------------------------------------------
-# Faq 2 Section
+# Call To Action Section
 --------------------------------------------------------------*/
-.faq-2 {
-  --background-color: color-mix(in srgb, var(--heading-color), transparent 95%);
-}
-
-.faq-2 .faq-container {
-  margin-top: 15px;
-}
-
-.faq-2 .faq-container .faq-item {
+.call-to-action {
+  --background-color: #000000;
+  --default-color: #ffffff;
+  --contrast-color: #ffffff;
+  padding: 120px 0;
   position: relative;
-  padding: 20px;
-  margin-bottom: 20px;
-  background-color: var(--contrast-color);
-  overflow: hidden;
+  clip-path: inset(0);
 }
 
-.faq-2 .faq-container .faq-item:last-child {
-  margin-bottom: 0;
-}
-
-.faq-2 .faq-container .faq-item h3 {
-  font-weight: 600;
-  font-size: 18px;
-  line-height: 24px;
-  margin: 0 30px 0 32px;
-  transition: 0.3s;
-  cursor: pointer;
-}
-
-.faq-2 .faq-container .faq-item h3 span {
-  color: var(--accent-color);
-  padding-right: 5px;
-}
-
-.faq-2 .faq-container .faq-item h3:hover {
-  color: var(--accent-color);
-}
-
-.faq-2 .faq-container .faq-item .faq-content {
-  display: grid;
-  grid-template-rows: 0fr;
-  transition: 0.3s ease-in-out;
-  visibility: hidden;
-  opacity: 0;
-}
-
-.faq-2 .faq-container .faq-item .faq-content p {
-  margin-bottom: 0;
-  overflow: hidden;
-}
-
-.faq-2 .faq-container .faq-item .faq-icon {
-  position: absolute;
-  top: 22px;
-  left: 20px;
-  font-size: 20px;
-  line-height: 0;
-  transition: 0.3s;
-  color: var(--accent-color);
-}
-
-.faq-2 .faq-container .faq-item .faq-toggle {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  font-size: 16px;
-  line-height: 0;
-  transition: 0.3s;
-  cursor: pointer;
-}
-
-.faq-2 .faq-container .faq-item .faq-toggle:hover {
-  color: var(--accent-color);
-}
-
-.faq-2 .faq-container .faq-active h3 {
-  color: var(--accent-color);
-}
-
-.faq-2 .faq-container .faq-active .faq-content {
-  grid-template-rows: 1fr;
-  visibility: visible;
-  opacity: 1;
-  padding-top: 10px;
-}
-
-.faq-2 .faq-container .faq-active .faq-toggle {
-  transform: rotate(90deg);
-  color: var(--accent-color);
-}
-
-/*--------------------------------------------------------------
-# Contact Section
---------------------------------------------------------------*/
-.contact .info-wrap {
-  box-shadow: 0px 0px 20px color-mix(in srgb, var(--default-color), transparent 90%);
-  border-top: 3px solid var(--accent-color);
-  border-bottom: 3px solid var(--accent-color);
-  padding: 30px;
+.call-to-action img {
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
   height: 100%;
+  object-fit: cover;
+  z-index: 1;
 }
 
-@media (max-width: 575px) {
-  .contact .info-wrap {
-    padding: 20px;
-  }
-}
-
-.contact .info-item {
-  margin-bottom: 40px;
-}
-
-.contact .info-item i {
-  font-size: 20px;
-  color: var(--accent-color);
-  background: color-mix(in srgb, var(--accent-color), transparent 92%);
-  width: 44px;
-  height: 44px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 50px;
-  transition: all 0.3s ease-in-out;
-  margin-right: 15px;
-}
-
-.contact .info-item h3 {
-  padding: 0;
-  font-size: 18px;
-  font-weight: 700;
-  margin-bottom: 5px;
-}
-
-.contact .info-item p {
-  padding: 0;
-  margin-bottom: 0;
-  font-size: 14px;
-}
-
-.contact .info-item:hover i {
-  background: var(--accent-color);
-  color: var(--contrast-color);
-}
-
-.contact .php-email-form {
-  height: 100%;
-  padding: 30px;
-  border-top: 3px solid var(--accent-color);
-  border-bottom: 3px solid var(--accent-color);
-  box-shadow: 0px 0px 20px color-mix(in srgb, var(--default-color), transparent 90%);
-}
-
-@media (max-width: 575px) {
-  .contact .php-email-form {
-    padding: 20px;
-  }
-}
-
-.contact .php-email-form .error-message {
-  display: none;
-  background: #df1529;
-  color: #ffffff;
-  text-align: left;
-  padding: 15px;
-  margin-bottom: 24px;
-  font-weight: 600;
-}
-
-.contact .php-email-form .sent-message {
-  display: none;
-  color: #ffffff;
-  background: #059652;
-  text-align: center;
-  padding: 15px;
-  margin-bottom: 24px;
-  font-weight: 600;
-}
-
-.contact .php-email-form .loading {
-  display: none;
-  background: var(--background-color);
-  text-align: center;
-  padding: 15px;
-  margin-bottom: 24px;
-}
-
-.contact .php-email-form .loading:before {
+.call-to-action:before {
   content: "";
-  display: inline-block;
-  border-radius: 50%;
-  width: 24px;
-  height: 24px;
-  margin: 0 10px -6px 0;
-  border: 3px solid var(--accent-color);
-  border-top-color: var(--background-color);
-  animation: animate-loading 1s linear infinite;
+  background: color-mix(in srgb, var(--background-color), transparent 35%);
+  position: absolute;
+  inset: 0;
+  z-index: 2;
 }
 
-.contact .php-email-form input[type=text],
-.contact .php-email-form input[type=email],
-.contact .php-email-form textarea {
-  font-size: 14px;
-  padding: 10px 15px;
-  box-shadow: none;
-  border-radius: 0;
+.call-to-action .container {
+  position: relative;
+  z-index: 3;
+}
+
+.call-to-action h3 {
   color: var(--default-color);
-  background-color: color-mix(in srgb, var(--background-color), transparent 50%);
-  border-color: color-mix(in srgb, var(--default-color), transparent 80%);
+  font-size: 28px;
+  font-weight: 700;
 }
 
-.contact .php-email-form input[type=text]:focus,
-.contact .php-email-form input[type=email]:focus,
-.contact .php-email-form textarea:focus {
-  border-color: var(--accent-color);
+.call-to-action p {
+  color: var(--default-color);
 }
 
-.contact .php-email-form input[type=text]::placeholder,
-.contact .php-email-form input[type=email]::placeholder,
-.contact .php-email-form textarea::placeholder {
-  color: color-mix(in srgb, var(--default-color), transparent 70%);
-}
-
-.contact .php-email-form button[type=submit] {
-  color: var(--contrast-color);
-  background: var(--accent-color);
-  border: 0;
-  padding: 10px 30px;
-  transition: 0.4s;
+.call-to-action .cta-btn {
+  font-family: var(--heading-font);
+  font-weight: 500;
+  font-size: 16px;
+  letter-spacing: 1px;
+  display: inline-block;
+  padding: 12px 40px;
   border-radius: 50px;
+  transition: 0.5s;
+  margin: 10px;
+  border: 2px solid var(--contrast-color);
+  color: var(--contrast-color);
 }
 
-.contact .php-email-form button[type=submit]:hover {
-  background: color-mix(in srgb, var(--accent-color), transparent 25%);
-}
-
-@keyframes animate-loading {
-  0% {
-    transform: rotate(0deg);
-  }
-
-  100% {
-    transform: rotate(360deg);
-  }
+.call-to-action .cta-btn:hover {
+  background: var(--accent-color);
+  border: 2px solid var(--accent-color);
 }
 
 /*--------------------------------------------------------------
@@ -2241,4 +1883,3 @@ section,
 .perfil {
   position: absolute;
 }
-

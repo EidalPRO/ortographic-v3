@@ -29,7 +29,7 @@ if (!isset($_SESSION['usuario'])) {
             </button>
             <div class="collapse navbar-collapse" id="navbar-toggler">
                 <a class="navbar-brand" href="#">
-                    <img src="assets/imagenes/logoOrtographic.webp" width="50" alt="Logo Ortographic">
+                    <img src="assets/img/logoOrtographic.webp" width="50" alt="Logo Ortographic">
                 </a>
                 <ul class="navbar-nav d-flex justify-content-center align-items-center">
                     <li class="nav-item">
