@@ -264,3 +264,5 @@ document.getElementById('m1').addEventListener('click', function (event) {
 document.getElementById('m2').addEventListener('click', function (event) {
   window.location.href = "assets/pdf/Manual_usuario_ort.pdf";
 });
+
+

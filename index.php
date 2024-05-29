@@ -1,4 +1,4 @@
-<?php
+<h6?php
 session_start();
 ?>
 <!DOCTYPE html>
@@ -26,6 +26,7 @@ session_start();
   <!-- Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/miPerfil.css">
+  <link rel="stylesheet" href="assets/css/modal.css">
   <link rel="shortcut icon" href="assets/img/logoOrtographic.webp" type="image/x-icon">
 
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
@@ -157,7 +158,7 @@ session_start();
                 <li><i class="bi bi-check"></i> <span> Compite en clasificaciones globales para ver cómo te
                     comparas con otros jugadores.</span></li>
               </ul>
-              <a class="buy-btn" id="boton_global" href="bd/salas.php">Entrar</a>
+              <a class="buy-btn" id="boton_practicar" href="bd/salas.php">Entrar</a>
             </div>
           </div><!-- End Pricing Item -->
 
@@ -173,7 +174,7 @@ session_start();
                 <li><i class="bi bi-check"></i> <span>Disfruta de un ambiente relajado y divertido para jugar y aprender
                     con amigos cercanos.</span></li>
               </ul>
-              <a data-bs-toggle="modal" data-bs-target="#staticBackdrop" id="boton_privado" class="buy-btn">Entrar</a>
+              <a data-bs-toggle="modal" data-bs-target="#salasModal" id="boton_privado" class="buy-btn">Entrar</a>
             </div>
           </div><!-- End Pricing Item -->
           <div class="col-lg-2"></div>
@@ -203,7 +204,7 @@ session_start();
           <div class="col-xl-6 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="100">
             <div class="service-item position-relative">
               <div class="icon"> <i class="bi bi-journal-arrow-down"></i></div>
-              <h4><a class="stretched-link"  id="m1">Manual de instalación.</a></h4>
+              <h4><a class="stretched-link" id="m1">Manual de instalación.</a></h4>
               <p>Descarga nuestra guía de instalación para configurar rápidamente Ortographic en tu dispositivo.</p>
             </div>
           </div><!-- End Service Item -->
@@ -896,6 +897,191 @@ session_start();
 
     </section>
 
+    <!-- salas modal  -->
+
+    <!-- Modal -->
+    <div class="modal fade salasModal" id="salasModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <div class="tools">
+              <div class="circle">
+                <span class="red box"></span>
+              </div>
+              <div class="circle">
+                <span class="yellow box"></span>
+              </div>
+              <div class="circle">
+                <span class="green box"></span>
+              </div>
+            </div>
+            <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+          </div>
+          <div class="modal-body">
+            <div class="container">
+              <div class="row">
+                <h3 class="modal-title fs-5" id="staticBackdropLabel">Salas privadas</h3>
+                <h5>Disfruta jugando en una sala privada con tus amigos, puedes crear una sala privada o unirte a una utilizando su id.</h5>
+                <br>
+                <div class="col-12 col-lg-6">
+                  <div class="cir d-flex flex-wrap align-items-center justify-content-center">
+                    <a type="button" data-bs-toggle="modal" data-bs-target="#salasModal2" id="ing" href="">
+                      <i class="bi bi-cloud-plus"></i>
+                    </a>
+                  </div>
+                  <p>Crear una sala</p>
+                </div>
+                <div class="col-12 col-lg-6">
+                  <div class="col-12 col-lg-6">
+                    <div class="cir d-flex flex-wrap align-items-center justify-content-center">
+                      <a type="button" data-bs-toggle="modal" data-bs-target="#salasModal3" id="exis" href="">
+                        <i class="bi bi-cloud-arrow-up"></i>
+                      </a>
+                    </div>
+                    <p>Ingresar a una sala existente</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+              <span class="circle1"></span>
+              <span class="circle2"></span>
+              <span class="circle3"></span>
+              <span class="circle4"></span>
+              <span class="circle5"></span>
+              <span class="text">Regresar</span>
+            </button>
+            <!-- <button type="button" class="btn btn-primary">Understood</button> -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade salasModal" id="salasModal2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <div class="tools">
+              <div class="circle">
+                <span class="red box"></span>
+              </div>
+              <div class="circle">
+                <span class="yellow box"></span>
+              </div>
+              <div class="circle">
+                <span class="green box"></span>
+              </div>
+            </div>
+            <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+          </div>
+          <div class="modal-body">
+            <h3 class="modal-title fs-5" id="staticBackdropLabel">Sala nueva</h3>
+
+            <h4 class="mt-3" id="id-sala">Código de la nueva sala: </h4>
+            <span>El código se vuelve único en el momento de la creación de la sala.</span>
+
+            <form action="bd/salas.php" method="post" enctype="multipart/form-data" class="mt-5" id="formulario">
+              <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Nombre de la sala:</label>
+                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="sala">
+              </div>
+
+              <div class="mb-3">
+                <label for="dificultad">Selecciona las dificultades que quieres para esta sala:</label>
+                <div>
+                  <input type="checkbox" id="facil" name="dificultad1" value="Facil">
+                  <label for="facil">Fácil</label>
+                </div>
+                <div>
+                  <input type="checkbox" id="medio" name="dificultad2" value="Medio">
+                  <label for="medio">Medio</label>
+                </div>
+                <div>
+                  <input type="checkbox" id="dificil" name="dificultad3" value="Dificil">
+                  <label for="dificil">Difícil</label>
+                </div>
+              </div>
+              <input type="hidden" name="accion" value="nuevo">
+              <input type="hidden" name="codigo" value="" id="codigo_sala">
+
+              <button type="submit" class="btn btn-primary" id="btn-submit"><span class="circle1"></span>
+                <span class="circle2"></span>
+                <span class="circle3"></span>
+                <span class="circle4"></span>
+                <span class="circle5"></span>
+                <span class="text">Aceptar</span>
+              </button>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#salasModal">
+              <span class="circle1"></span>
+              <span class="circle2"></span>
+              <span class="circle3"></span>
+              <span class="circle4"></span>
+              <span class="circle5"></span>
+              <span class="text">Cancelar</span>
+            </button>
+            <!-- <button type="button" class="btn btn-primary">Understood</button> -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade salasModal" id="salasModal3" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <div class="tools">
+              <div class="circle">
+                <span class="red box"></span>
+              </div>
+              <div class="circle">
+                <span class="yellow box"></span>
+              </div>
+              <div class="circle">
+                <span class="green box"></span>
+              </div>
+            </div>
+            <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+          </div>
+          <div class="modal-body">
+            <h3 class="modal-title fs-5" id="staticBackdropLabel">Sala existente</h3>
+            <h5>Ingresa el id de la sala</h5>
+            <form action="bd/salas.php" method="post" enctype="multipart/form-data">
+              <div class="mb-3">
+                <!-- <label for="exampleInputEmail1" class="form-label">Email address</label> -->
+                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="sala">
+              </div>
+              <button type="submit" class="btn btn-primary"><span class="circle1"></span>
+                <span class="circle2"></span>
+                <span class="circle3"></span>
+                <span class="circle4"></span>
+                <span class="circle5"></span>
+                <span class="text">Aceptar</span>
+              </button>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#salasModal2">
+              <span class="circle1"></span>
+              <span class="circle2"></span>
+              <span class="circle3"></span>
+              <span class="circle4"></span>
+              <span class="circle5"></span>
+              <span class="text">Cancelar</span>
+            </button>
+            <!-- <button type="button" class="btn btn-primary">Understood</button> -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- fin salas modal  -->
+
   </main>
 
   <footer id="creditos" class="footer">
@@ -978,10 +1164,25 @@ session_start();
     document.getElementById('boton_practicar').addEventListener('click', function(event) {
       event.preventDefault();
 
-      <?php if (isset($_SESSION['usuario'])) { ?>
-        // Si la sesión está iniciada, redirige a la página de selección de sala
-        window.location.href = "selecionar_sala.php";
+      <?php if (!isset($_SESSION['usuario'])) { ?>
+        // Si la sesión no está iniciada, muestra una alerta
+        Swal.fire({
+          icon: "info",
+          title: "Inicia sesión",
+          text: "Debes iniciar sesión para tener una mejor experiencia del juego."
+        }).then(() => {
+          window.location.href = 'inicio_sesion.php';
+        });
       <?php } else { ?>
+        window.location.href = 'bd/salas.php'
+      <?php } ?>
+
+    });
+
+    document.getElementById('boton_privado').addEventListener('click', function(event) {
+      event.preventDefault();
+
+      <?php if (!isset($_SESSION['usuario'])) { ?>
         // Si la sesión no está iniciada, muestra una alerta
         Swal.fire({
           icon: "info",
