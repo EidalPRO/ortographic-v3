@@ -345,7 +345,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         logroObtenido = data.logro;
                         logroAMostrar = (logroObtenido === "logro1") ? 'Maestro de la Acentuación' : (logroObtenido === "logro2") ? 'Rey de las Letras' : (logroObtenido === "logro3") ? 'Señor de la Concordancia' : 'Experto en Gramática';
                         var logroImagen = (logroObtenido === "logro1") ? 'Acentuacion.webp' : (logroObtenido === "logro2") ? 'Logro-letras.webp' : (logroObtenido === "logro3") ? 'Concordancia.webp' : 'Gramatica.webp';
-
+                        console.log(logroFinal)
                         Swal.fire({
                             title: "Felicidades!",
                             text: `Acabas de obtener el logro ${logroAMostrar}. 
