@@ -97,6 +97,10 @@ h6 {
 /*--------------------------------------------------------------
 # Global Header
 --------------------------------------------------------------*/
+#miPer {
+  color: white;
+}
+
 .header {
   --background-color: #3d4d6a;
   --heading-color: #ffffff;
@@ -358,6 +362,10 @@ h6 {
     transition: 0.3s;
     z-index: 9998;
     box-shadow: 0px 0px 30px color-mix(in srgb, var(--default-color), transparent 90%);
+  }
+
+  #miPer {
+    color: var(--nav-dropdown-color);
   }
 
   .navmenu a,
@@ -921,6 +929,10 @@ section,
 /*--------------------------------------------------------------
 # About Section
 --------------------------------------------------------------*/
+.about p {
+  text-align: justify;
+}
+
 .about ul {
   list-style: none;
   padding: 0;
@@ -1284,13 +1296,14 @@ section,
 .pricing h4 span {
   color: color-mix(in srgb, var(--default-color), transparent 50%);
   font-size: 18px;
+  /* text-align: justify; */
 }
 
 .pricing ul {
   padding: 20px 0;
   list-style: none;
   color: color-mix(in srgb, var(--default-color), transparent 30%);
-  text-align: left;
+  text-align: justify;
   line-height: 20px;
 }
 
@@ -1507,6 +1520,7 @@ section,
 
 .call-to-action p {
   color: var(--default-color);
+  text-align: justify;
 }
 
 .call-to-action .cta-btn {

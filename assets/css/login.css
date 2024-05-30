@@ -318,3 +318,12 @@ a {
     background-color: #07013d;
     box-shadow: -5px 6px 20px 0px rgba(88, 88, 88, 0.569);
 }
+
+#regresar {
+    margin: 10px;
+    position: absolute;
+    /* justify-self: end; */
+    align-self: end;
+    color: white;
+    /* text-decoration: none; */
+}

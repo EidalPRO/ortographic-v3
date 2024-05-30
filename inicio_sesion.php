@@ -27,7 +27,7 @@
                     $error = $_GET['error'];
                     if ($error === "usuario_no_encontrado") {
                         echo '
-                            <div class="alert alert-danger " role="alert" style="height: 30px">
+                            <div class="alert alert-danger" style="background: red;" role="alert" style="height: 30px">
                                 <p>Usuario y/o contraseña incorrecta!</p>
                             </div>
                         ';
@@ -36,19 +36,19 @@
                     $error = $_GET['responce'];
                     if ($error === "usuario-existente") {
                         echo '
-                            <div class="alert alert-warning" role="alert" style="height: 30px">
+                            <div class="alert alert-warning" style="background: orange;" role="alert" style="height: 30px">
                                 <p>El usuario ya existe!</p>
                             </div>
                         ';
                     } else if ($error === "registro-exitoso") {
                         echo '
-                            <div class="alert alert-success " role="alert" style="height: 30px">
+                            <div class="alert alert-success " style="background: green;" role="alert" style="height: 30px">
                                 <p>Registro exitoso!</p>
                             </div>
                         ';
                     } else if ($error === "error") {
                         echo '
-                            <div class="alert alert-danger" role="alert" style="height: 30px">
+                            <div class="alert alert-danger" style="background: red;" role="alert" style="height: 30px">
                                 <p>Algo salio mal!</p>
                             </div>
                         ';
@@ -57,6 +57,7 @@
                 ?>
                 <input type="button" value="Iniciar Sesión" id="sign-in">
             </div>
+            <a href="index.php" id="regresar">Regresar</a>
         </div>
         <div class="form-information">
             <div class="form-information-childs">
@@ -106,6 +107,7 @@
                 <p>Para unirte a nuestra comunidad por favor Inicia Sesión con tus datos</p>
                 <input type="button" value="Registrarse" id="sign-up">
             </div>
+            <a href="index.php" id="regresar">Regresar</a>
         </div>
         <div class="form-information">
             <div class="form-information-childs">

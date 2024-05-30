@@ -212,7 +212,7 @@ document.addEventListener('DOMContentLoaded', function () {
         Swal.fire({
             icon: 'success',
             title: 'Respuesta correcta. ',
-            html: `<p>${ora}</p>` + '<br>' + `<p>${fed}</p>`,
+            html: `<p class="text-center">${ora}</p>` + '<br>' + `<p class="modal-justificado">${fed}</p>`,
             confirmButtonText: 'Continuar',
             padding: '1rem',
             allowOutsideClick: false,
@@ -232,9 +232,10 @@ document.addEventListener('DOMContentLoaded', function () {
         Swal.fire({
             icon: 'error',
             title: 'Respuesta incorrecta. ',
-            html: `<p>${ora}</p>` + '<br>' + `<p>${fed}</p>`,
+            html: `<p class="text-center">${ora}</p>` + '<br>' + `<p class="modal-justificado">${fed}</p>`,
             confirmButtonText: 'Continuar',
             padding: '1rem',
+            confirmButtonText: "Continuar",
             allowOutsideClick: false,
             allowEscapeKey: false,
             showConfirmButton: true,
@@ -300,6 +301,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     Swal.fire({
                         icon: "success",
                         title: 'Preguntas completadas',
+                        confirmButtonText: "De acuerdo",
                         text: `Este fue tu porcentaje de efectividad en la dificultad ${miDificultad}: ${porcentajeEfectividad}% \nTu tiempo total en responder las preguntas fue de ${tiempoTotal} segundos.`
                     }).then(() => {
                         enviarDatos();
@@ -349,6 +351,7 @@ document.addEventListener('DOMContentLoaded', function () {
                             text: `Acabas de obtener el logro ${logroAMostrar}. 
                         \n Por haber conseguido el 100% de efectividad en el tema de ${logroTema}.`,
                             imageUrl: `assets/img/logros/${logroImagen}`,
+                            confirmButtonText: "De acuerdo",
                             imageWidth: 200,
                             imageHeight: 200,
                             imageAlt: "Logro"
@@ -383,6 +386,7 @@ document.addEventListener('DOMContentLoaded', function () {
             text: `Acabas de obtener el logro Sabio Ortográfico. 
     \n Por haber conseguido el 100% de efectividad todos los temas.`,
             imageUrl: `assets/img/logros/logro-final.webp`,
+            confirmButtonText: "De acuerdo",
             imageWidth: 200,
             imageHeight: 200,
             imageAlt: "Custom image"

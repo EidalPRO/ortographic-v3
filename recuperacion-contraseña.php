@@ -122,7 +122,7 @@
                 </div>
                 <div class="note">
                     <label class="title">Ingresa el código de verificación</label>
-                    <span class="subtitle">Se envio un correo al correo que proporcionaste al regisrtrarte. <br>
+                    <span class="subtitle">Se envio un código al correo que proporcionaste al regisrtrarte. <br>
                         Revisa tu Correo Electronico o si no lo encuentras en recibidos, verifica en el apartado de SPAM</span>
                 </div>
 

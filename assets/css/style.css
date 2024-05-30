@@ -362,73 +362,6 @@ h6 {
 }
 
 /*--------------------------------------------------------------
-# Hero Section
---------------------------------------------------------------*/
-#hero {
-  width: 100%;
- 
-  margin-top: 70px;
-  padding: 60px 0;
-}
-
-#hero h1 {
-  margin: 0 0 20px 0;
-  font-size: 48px;
-  font-weight: 700;
-  line-height: 56px;
-  color: #364146;
-}
-
-#hero h2 {
-  color: #576971;
-  margin-bottom: 30px;
-  font-size: 24px;
-}
-
-#hero .btn-get-started {
-  font-family: "Raleway", sans-serif;
-  font-weight: 600;
-  font-size: 13px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  display: inline-block;
-  padding: 12px 28px;
-  border-radius: 3px;
-  transition: 0.5s;
-  color: #fff;
-  background: #009cea;
-}
-
-#hero .btn-get-started:hover {
-  background: #008bd1;
-}
-
-#hero .hero-img {
-  text-align: center;
-}
-
-#hero .hero-img img {
-  width: 70%;
-}
-
-@media (min-width: 1024px) {
-  #hero {
-    background-attachment: fixed;
-  }
-}
-
-@media (max-width: 992px) {
-  #hero h1 {
-    font-size: 32px;
-    line-height: 40px;
-  }
-
-  #hero h2 {
-    font-size: 20px;
-  }
-}
-
-/*--------------------------------------------------------------
 # Sections General
 --------------------------------------------------------------*/
 section {
@@ -463,7 +396,8 @@ section {
 --------------------------------------------------------------*/
 .services .icon-box {
   padding: 30px;
-  position: relative;
+  width: 100%;
+  /* position: relative; */
   overflow: hidden;
   margin: 0;
   background: #fff;
@@ -474,20 +408,32 @@ section {
   border-bottom: 3px solid #fff;
 }
 
+@media (max-width: 767px) {
+  .services .icon-box {
+    padding: 0;
+  }
+}
+
+.services .centrado {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .services .icon-box:hover {
   transform: translateY(-5px);
 }
 
 .services .icon i {
   font-size: 48px;
-  line-height: 1;
-  margin-bottom: 15px;
+  line-height: 2;
+  /* margin-bottom: 20px; */
 }
 
 .services .title {
   font-weight: 700;
   margin-bottom: 15px;
-  font-size: 18px;
+  font-size: 23px;
 }
 
 .services .title a {
@@ -530,4 +476,19 @@ section {
 
 .services .icon-box-blue:hover {
   border-color: #2282ff;
+}
+
+/* MIs estilos  */
+
+.modal-justificado {
+  text-align: justify;
+}
+
+.swal2-html-container {
+  text-align: justify;
+}
+
+.progreso {
+  margin-top: 30px;
+  margin-bottom: 10px;
 }

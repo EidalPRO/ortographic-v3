@@ -429,7 +429,7 @@ section {
     inset: 0;
     padding: 50px 0 10px 0;
     margin: 0;
-    background:#37517e;
+    background: #37517e;
     overflow-y: auto;
     transition: 0.3s;
     z-index: 9998;
@@ -528,7 +528,7 @@ section {
     content: "";
     position: fixed;
     inset: 0;
-    background:#47b2e487;
+    background: #47b2e487;
     z-index: 9996;
   }
 }
@@ -543,12 +543,14 @@ section {
 }
 
 .faq .content h4 {
+  text-align: justify;
   font-size: 20px;
   font-weight: 700;
   margin-top: 5px;
 }
 
 .faq .content p {
+  text-align: justify;
   font-size: 15px;
   color: #6c757d;
 }
@@ -601,6 +603,7 @@ section {
 }
 
 .faq .accordion-body {
+  text-align: justify;
   padding: 0 40px 30px 45px;
   border: 0;
   border-radius: 10px;
@@ -682,10 +685,9 @@ section {
     font-size: 36px;
   }
 
-  .hero .btn-get-started,
-  .hero .btn-watch-video {
-    font-size: 14px;
-  }
+  /* .hero .icon-box {
+    box-shadow: 4px 4px 29px 0 rgba(0, 0, 0, 0.08);
+  } */
 }
 
 .hero .icon-boxes {
@@ -708,7 +710,7 @@ section {
   padding: 60px 30px;
   position: relative;
   overflow: hidden;
-  background: #37517e;
+  background: #305086;
   box-shadow: 0 0 29px 0 rgba(0, 0, 0, 0.08);
   transition: all 0.3s ease-in-out;
   border-radius: 8px;

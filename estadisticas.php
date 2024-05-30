@@ -33,10 +33,10 @@ if (!isset($_SESSION['usuario'])) {
                 </a>
                 <ul class="navbar-nav d-flex justify-content-center align-items-center">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="" id="sala">Sala: </a>
+                        <a class="nav-link active" aria-current="page" href="" id="sala" style="color: white; font-size: 20px;">Sala: </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-disabled="true" href="categoria.php">Regresar</a>
+                        <a class="nav-link" aria-disabled="true" href="categoria.php" style="color: white; font-size: 20px;">Regresar</a>
                     </li>
                 </ul>
             </div>

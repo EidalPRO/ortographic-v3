@@ -54,7 +54,7 @@ session_start();
           <li><a href="#creditos">Creditos</a></li>
           <?php
           if (isset($_SESSION['usuario'])) {
-            echo '<li><a type="button"  data-bs-toggle="modal" data-bs-target="#MiPerfil" style="color: gray;" id="miPer">Mi Perfil</a></li>';
+            echo '<li><a type="button"  data-bs-toggle="modal" data-bs-target="#MiPerfil"  id="miPer">Mi Perfil</a></li>';
           } else {
             echo '<li><a href="inicio_sesion.php">Iniciar sesión</a></li>';
           }

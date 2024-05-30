@@ -6,7 +6,9 @@ $palabrasProhibidas = array(
     'ofensiva', 'grosera', 'puto', 'puta', 'verga', 'zorra', 'pendejo', 'pendeja',
     'pene', 'sexo', 'nazi', 'pela', 'pelas', 'mierda', 'caca', 'kaka', 'popo',
     'pendejos', 'putos', 'putas', 'ramera', 'Puto', 'Puta', 'Pendejo', 'Pendeja',
-    'Pendejos', 'Putos', 'Verga', 'Pene'
+    'Pendejos', 'Putos', 'Verga', 'Pene', 'perro', 'perra', 'Perro', 'Perra', 'perros',
+    'perras', 'Perros', 'Perras', 'Putas', 'pela', 'pelan', 'Pelas', 'pelas', 'Pela', 
+    'Pelan', 'Chinguen', 'chingue', 'chinga', 'chinguen', 'Chinga', 'Chingue', 'Mierda'
 );
 
 

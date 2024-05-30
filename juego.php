@@ -1,5 +1,11 @@
+<?php
+session_start();
+if (!isset($_SESSION['usuario'])) {
+  header("location: index.php");
+}
+?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
   <meta charset="utf-8">
@@ -58,12 +64,12 @@
 
     <div class="container">
 
-      <div class="container progreso mb-5" data-aos="fade-up">
-        <div class="progress" role="progressbar" aria-label="Animated striped example" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
-          <div class="progress-bar progress-bar-striped progress-bar-animated bg-info" style="width: 0"></div>
-        </div>
-      </div>
       <div class="section-title" data-aos="fade-up">
+        <div class="container progreso mb-5" data-aos="fade-up">
+          <div class="progress" role="progressbar" aria-label="Animated striped example" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
+            <div class="progress-bar progress-bar-striped progress-bar-animated bg-info" style="width: 1%"></div>
+          </div>
+        </div>
         <h5 id="contador"> </h5>
         <h2 id="mostrar-reactivo"></h2>
 
@@ -71,24 +77,24 @@
 
       <div class="row mt-5">
         <div class="col-2"></div>
-        <div class="col-md-12 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0" data-aos="zoom-in">
+        <div class="col-12 col-md-12 col-lg-3 centrado mb-5 mb-lg-0" data-aos="zoom-in">
           <div class="icon-box icon-box-pink" id="card1">
-            <div class="icon"><i class="bx bxl-dribbble"></i></div>
+            <div class="icon"><i class="bi bi-dice-1"></i></div>
             <h4 class="title"><a id="op1"></a></h4>
           </div>
         </div>
 
-        <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0" data-aos="zoom-in" data-aos-delay="100">
+        <div class="col-md-6 col-lg-3 centrado mb-5 mb-lg-0" data-aos="zoom-in" data-aos-delay="100">
           <div class="icon-box icon-box-cyan" id="card2">
-            <div class="icon"><i class="bx bx-file"></i></div>
+            <div class="icon"><i class="bi bi-dice-2"></i></div>
             <h4 class="title"><a id="op2"></a></h4>
           </div>
         </div>
 
 
-        <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0" data-aos="zoom-in" data-aos-delay="300">
+        <div class="col-md-6 col-lg-3 centrado mb-5 mb-lg-0" data-aos="zoom-in" data-aos-delay="300">
           <div class="icon-box icon-box-blue" id="card3">
-            <div class="icon"><i class="bx bx-world"></i></div>
+            <div class="icon"><i class="bi bi-dice-3"></i></div>
             <h4 class="title"><a id="op3"></a></h4>
           </div>
         </div>

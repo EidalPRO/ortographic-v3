@@ -7,7 +7,7 @@ if (!isset($_SESSION['usuario'])) {
 
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="utf-8">
@@ -46,7 +46,7 @@ if (!isset($_SESSION['usuario'])) {
             <a href="index.html" class="logo d-flex align-items-center">
                 <!-- Uncomment the line below if you also wish to use an image logo -->
                 <!-- <img src="assets/img/logo.png" alt=""> -->
-                <h1>Ortographic</h1>
+                <h1>ORTOGRAPHIC</h1>
             </a>
             <nav id="navbar" class="navbar">
                 <ul>
