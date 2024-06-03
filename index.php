@@ -90,7 +90,7 @@ session_start();
             </div>
           </div>
           <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-out" data-aos-delay="200">
-            <img src="assets/img/lander.webp" class="img-fluid animated" alt="Ortographic Lander">
+            <img src="assets/img/hero-ort.webp" class="img-fluid animated" alt="Ortographic Lander">
           </div>
         </div>
       </div>
@@ -224,7 +224,7 @@ session_start();
     <!-- Call To Action Section -->
     <section id="call-to-action" class="call-to-action section">
 
-      <img src="assets/img/escuela.webp" alt="">
+      <img src="assets/img/importancia.webp" alt="FOndo">
 
       <div class="container">
 
@@ -876,8 +876,60 @@ session_start();
             <div class="container">
               <div class="row">
                 <h3 class="modal-title fs-5" id="staticBackdropLabel">Salas privadas</h3>
-                <h5>Disfruta jugando en una sala privada con tus amigos, puedes crear una sala privada o unirte a una utilizando su id.</h5>
+                <h5 class="mb-3">Disfruta jugando en una sala privada con tus amigos, puedes crear una sala privada o unirte a una utilizando su id.</h5>
                 <br>
+                <div class="col-12 d-flex text-center salas-lista">
+                  <?php
+                  include 'bd/conexion_be.php';
+
+                  $nombreUsuario = $_SESSION['usuario'] ?? null;
+
+                  // Paso 1: Obtener todos los codigo_sala asociados al usuario
+                  $consultaEstadisticasSalas = "SELECT codigo_sala FROM estadisticas WHERE usuario_nombre = '$nombreUsuario'";
+                  $resultado1 = $conexion->query($consultaEstadisticasSalas);
+
+                  $codigosSala = [];
+                  if ($resultado1) {
+                    while ($fila = $resultado1->fetch_assoc()) {
+                      // Excluir el codigo_sala 'A0123'
+                      if ($fila['codigo_sala'] !== 'A0123') {
+                        $codigosSala[] = $fila['codigo_sala'];
+                      }
+                    }
+                  }
+
+                  if (!empty($codigosSala)) {
+                    // Convertir el array de codigosSala a una cadena para usar en la consulta SQL
+                    $codigosSalaString = implode(",", array_map(function ($codigo) {
+                      return "'$codigo'";
+                    }, $codigosSala));
+
+                    // Paso 2: Obtener la información de las salas usando los codigos_sala obtenidos
+                    $consultaSalas = "SELECT * FROM salas WHERE codigo_sala IN ($codigosSalaString)";
+                    $resultadoSalas = $conexion->query($consultaSalas);
+
+                    if ($resultadoSalas) {
+                      // Paso 3: Mostrar la información de las salas
+                      while ($fila = $resultadoSalas->fetch_assoc()) {
+                        echo '<li class="list-group-item d-flex justify-content-between mb-2">';
+                        echo '<div class="texto-salas">';
+                        echo '<strong>' . $fila['codigo_sala'] . '</strong><br>';
+                        echo $fila['nombre_sala'];
+                        echo '</div>';
+                        echo '<div>';
+                        echo '<a href="bd/salas.php?action=entrar&sala=' . $fila['codigo_sala'] . '" class="btn btn-success btn-sm">Entrar</a> ';
+                        echo '<a class="btn btn-danger btn-sm" onclick="confirmarSalida(\'' . $fila['codigo_sala'] . '\')">Salir</a>';
+                        echo '</div>';
+                        echo '</li>';
+                      }
+                    } else {
+                      echo "No se pudieron obtener los datos de las salas.";
+                    }
+                  } else {
+                    echo "No se encontraron salas para este usuario.";
+                  }
+                  ?>
+                </div>
                 <div class="col-12 col-md-6">
                   <div class="cir d-flex flex-wrap align-items-center justify-content-center">
                     <a type="button" data-bs-toggle="modal" data-bs-target="#salasModal2" id="ing" href="">
@@ -893,7 +945,7 @@ session_start();
                         <i class="bi bi-cloud-arrow-up"></i>
                       </a>
                     </div>
-                    <p>Ingresar a una sala existente</p>
+                    <p>Agregar una sala existente</p>
                   </div>
                 </div>
               </div>
@@ -1175,6 +1227,23 @@ session_start();
         });
       <?php } ?>
     });
+
+    function confirmarSalida(codigoSala) {
+      Swal.fire({
+        title: '¿Estás seguro?',
+        text: "¡Todos tus datos se borrarán y no podrás revertir esto!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Sí, salir',
+        cancelButtonText: 'Cancelar'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          window.location.href = 'bd/salas.php?action=salir&sala=' + codigoSala;
+        }
+      });
+    }
   </script>
 
 

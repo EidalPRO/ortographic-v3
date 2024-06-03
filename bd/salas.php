@@ -3,7 +3,15 @@ include 'conexion_be.php';
 
 session_start();
 
-if (isset($_POST['accion']) && $_POST['accion'] === 'nuevo') {
+
+$codigo_sala = $_GET['sala'] ?? null;
+$action = $_GET['action'] ?? null;
+
+if ($action === 'entrar') {
+    salaExistente2($conexion);
+} else if ($action === 'salir') {
+    salir($conexion);
+} else if (isset($_POST['accion']) && $_POST['accion'] === 'nuevo') {
     nuevaSala($conexion);
 } else {
     salaExistente($conexion);
@@ -205,5 +213,104 @@ function nuevaSala($conexion)
                 echo "Error al crear la sala: " . $conexion->error;
             }
         }
+    }
+}
+
+function salaExistente2($conexion)
+{
+    $codigo_sala = $_GET['sala'];
+    $nombre_usuario = $_SESSION['usuario'];
+
+    // Verificar si el usuario ya está en la sala
+    $consulta_existencia_estadisticas = "SELECT * FROM estadisticas WHERE usuario_nombre = '$nombre_usuario' AND codigo_sala = '$codigo_sala'";
+    $resultado_existencia_estadisticas = $conexion->query($consulta_existencia_estadisticas);
+
+    if ($resultado_existencia_estadisticas->num_rows > 0) {
+        $salaDificultad = "SELECT facil, medio, dificil FROM salas WHERE codigo_sala = '$codigo_sala'";
+        $resultadoSala = $conexion->query($salaDificultad);
+        $resultadoSala = $conexion->query($salaDificultad);
+        if ($resultadoSala) {
+            if ($resultadoSala->num_rows > 0) {
+                $filaRes = $resultadoSala->fetch_assoc();
+                $df1 = $filaRes["facil"];
+                $df2 = $filaRes["medio"];
+                $df3 = $filaRes["dificil"];
+                // Si el usuario ya está en la sala, redirigir a la página de temas
+                $update_usuarioYsala = "UPDATE usuarioysala SET codigo_sala = '$codigo_sala' WHERE usuario = '$nombre_usuario'";
+                $res = $conexion->query($update_usuarioYsala);
+                header("location: ../categoria.php?codigoSala=$codigo_sala&df1=$df1&df2=$df2&df3=$df3");
+                exit();
+            } else {
+                echo "No se encontraron resultados para el código de sala: $codigo_sala";
+            }
+        } else {
+            echo "Error al ejecutar la consulta: " . $conexion->error;
+        }
+        // header("location: ../categoria.php?codigoSala=$codigo_sala");
+        exit();
+    } else {
+        // Si el usuario no está en la sala, insertarlo en la tabla de Estadisticas
+        $consulta_sala_existente = "SELECT * FROM salas WHERE codigo_sala = '$codigo_sala'";
+        $resultado_sala_existente = $conexion->query($consulta_sala_existente);
+
+        if ($resultado_sala_existente->num_rows > 0) {
+            $consulta_existencia_usuarioEnSala = "SELECT * FROM usuarioysala WHERE usuario = '$nombre_usuario'";
+            $resultado_existencia_usuarioEnSala = $conexion->query($consulta_existencia_usuarioEnSala);
+
+            if (!($resultado_existencia_usuarioEnSala->num_rows > 0)) {
+                $insert_usuarioYsala = "INSERT INTO usuarioysala (usuario, codigo_sala) VALUES ('$nombre_usuario', '$codigo_sala')";
+                $rest = $conexion->query($insert_usuarioYsala);
+            } else {
+                $update_usuarioYsala = "UPDATE usuarioysala SET codigo_sala = '$codigo_sala' WHERE usuario = '$nombre_usuario'";
+                $res = $conexion->query($update_usuarioYsala);
+            }
+
+
+            // Si la sala existe, insertar al usuario en la tabla de Estadisticas
+            $insertar_usuario_estadisticas = "INSERT INTO estadisticas (usuario_nombre, codigo_sala) VALUES ('$nombre_usuario', '$codigo_sala')";
+            $insertar_usuario_estadisticas2 = "INSERT INTO estadisticasbasicas (usuario_nombre, codigo_sala) VALUES ('$nombre_usuario', '$codigo_sala')";
+            $conexion->query($insertar_usuario_estadisticas);
+            $conexion->query($insertar_usuario_estadisticas2);
+
+            $salaDificultad = "SELECT facil, medio, dificil FROM salas WHERE codigo_sala = '$codigo_sala'";
+            $resultadoSala = $conexion->query($salaDificultad);
+            $resultadoSala = $conexion->query($salaDificultad);
+            if ($resultadoSala) {
+                if ($resultadoSala->num_rows > 0) {
+                    $filaRes = $resultadoSala->fetch_assoc();
+                    $df1 = $filaRes["facil"];
+                    $df2 = $filaRes["medio"];
+                    $df3 = $filaRes["dificil"];
+                    header("location: ../categoria.php?codigoSala=$codigo_sala&df1=$df1&df2=$df2&df3=$df3");
+                    exit();
+                } else {
+                    echo "No se encontraron resultados para el código de sala: $codigo_sala";
+                }
+            } else {
+                echo "Error al ejecutar la consulta: " . $conexion->error;
+            }
+        } else {
+            // Si la sala no existe, mostrar un mensaje de error
+            header("location: ../index.php?error=sala_no_encontrada");
+            exit();
+        }
+    }
+}
+
+function salir($conexion)
+{
+    $codigo_sala = $_GET['sala'];
+    $nombre_usuario = $_SESSION['usuario'];
+
+    // Eliminar los registros del usuario en las tablas estadisticas y estadisticasbasicas
+    $eliminarEstadisticas = "DELETE FROM estadisticas WHERE usuario_nombre = '$nombre_usuario' AND codigo_sala = '$codigo_sala'";
+    $eliminarEstadisticasBasicas = "DELETE FROM estadisticasbasicas WHERE usuario_nombre = '$nombre_usuario' AND codigo_sala = '$codigo_sala'";
+
+    if ($conexion->query($eliminarEstadisticas) && $conexion->query($eliminarEstadisticasBasicas)) {
+        // Redirigir al usuario a una página de confirmación o a la página principal
+        header("Location: ../index.php?mensaje=salida_exitosa");
+        exit();
+    } else {
+        echo "Error al eliminar los registros: " . $conexion->error;
     }
 }
