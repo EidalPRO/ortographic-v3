@@ -50,9 +50,11 @@ if (!isset($_SESSION['usuario'])) {
             </a>
             <nav id="navbar" class="navbar">
                 <ul>
+                    <li><a href="" id="btn-admin" data-bs-toggle="modal" data-bs-target="#exampleModal2"></a></li>
                     <li><a href="" class="queestion" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-question-circle"></i></a></li>
                     <li><a href="" class="active" id="sala">Sala: </a></li>
                     <li><a href="estadisticas.php"> Estadisticas </a></li>
+                    <li><a href="" id="admin">Sala Global</a></li>
                     <li><a href="index.php">Salir</a></li>
                 </ul>
             </nav><!-- .navbar -->
@@ -240,6 +242,82 @@ if (!isset($_SESSION['usuario'])) {
                                 <br><br>
                                 ¡Diviértete aprendiendo!
                             </p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-dark" data-bs-dismiss="modal">
+                                <span class="circle1"></span>
+                                <span class="circle2"></span>
+                                <span class="circle3"></span>
+                                <span class="circle4"></span>
+                                <span class="circle5"></span>
+                                <span class="text">Cerrar</span>
+                            </button>
+                            <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal -->
+            <div class="modal fade salasModal" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <div class="tools">
+                                <div class="circle">
+                                    <span class="red box"></span>
+                                </div>
+                                <div class="circle">
+                                    <span class="yellow box"></span>
+                                </div>
+                                <div class="circle">
+                                    <span class="green box"></span>
+                                </div>
+                            </div>
+                            <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+                        </div>
+                        <div class="modal-body">
+                            <h4 class="modal-title fs-5" id="exampleModalLabel">Administrar sala.</h4>
+
+                            <div class="accordion" id="accordionExample">
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <a class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                            Usuarios
+                                        </a>
+                                    </h2>
+                                    <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+                                        <div class="accordion-body">
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <a class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                            Accordion Item #2
+                                        </a>
+                                    </h2>
+                                    <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                                        <div class="accordion-body">
+                                            <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <a class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                            Accordion Item #3
+                                        </a>
+                                    </h2>
+                                    <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                                        <div class="accordion-body">
+                                            <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                                        </div>
+                                    </div>
+                                </div> -->
+                            </div>
+
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-dark" data-bs-dismiss="modal">

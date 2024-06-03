@@ -303,6 +303,7 @@ var logro;
 var df1;
 var df2;
 var df3;
+var codigoSala;
 
 // Obtener los valores de los parámetros de la URL
 codigo = getParameterByName('codigoSala');
@@ -324,7 +325,7 @@ if ((codigo !== null) && (df1 !== null) && (df2 !== null) && (df3 !== null)) {
     obtenerCodigoSala();
   }
 
-  const codigoSala = localStorage.getItem('codigoSala');
+  codigoSala = localStorage.getItem('codigoSala');
 
 
 
@@ -345,7 +346,7 @@ if ((codigo !== null) && (df1 !== null) && (df2 !== null) && (df3 !== null)) {
   df3 = localStorage.getItem('df3');
 }
 
-if (codigo === 'A0123') {
+if (codigo === 'A0123' || codigoSala === 'A0123') {
   // console.log(ronda)
   // console.log(logro)
   t1.addEventListener("click", function () {
@@ -397,6 +398,14 @@ if (codigo === 'A0123') {
 
 
 } else {
+
+  const admin = document.getElementById('admin');
+
+  const btn_admi = document.getElementById('btn-admin');
+
+  window.onload = () => {
+    obtenerAdministrador(codigo);
+  }
 
   t1.addEventListener("click", function () {
     mostrarDificultad('t1');
@@ -458,6 +467,108 @@ if (codigo === 'A0123') {
       }
     });
   }
+
+
+  var nombre = localStorage.getItem('admin');
+  admin.innerText = "Administrador: " + nombre;
+  var esAdministrador = localStorage.getItem('esAdmin');
+  if (esAdministrador === 'true') {
+    btn_admi.innerText = "Administrar sala";
+  }
+
+
+}
+
+
+function obtenerAdministrador(codigoSala) {
+  fetch('bd/administrar.php', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      action: 'admin',
+      codigoSala: codigoSala
+    })
+  })
+    .then(response => response.json())
+    .then(data => {
+      if (data.success) {
+        // console.log('Nombre del Administrador:', data.);
+        localStorage.setItem('admin', data.nombreAdministrador);
+        esAdmin(codigo);
+      } else {
+        console.log("¿Qué haces por aquí?");
+        // console.error('Error:', data.error);
+      }
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+}
+
+function esAdmin(codigoSala) {
+  fetch('bd/administrar.php', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      action: 'verificar',
+      codigoSala: codigoSala
+    })
+  })
+    .then(response => response.json())
+    .then(data => {
+      if (data.success) {
+        console.log('Es administrador:', data.esAdmin);
+        if (data.esAdmin) {
+          localStorage.setItem('esAdmin', 'true');
+        }
+      } else {
+        console.error('Error:', data.error);
+      }
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+}
+
+function obtenerUsuarios(codigoSala) {
+  fetch('administrar.php', {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+          action: 'obtenerUsuarios',
+          codigoSala: codigoSala
+      })
+  })
+  .then(response => response.json())
+  .then(data => {
+      if (data.success) {
+          const usuarios = data.usuarios;
+          const accordionBody = document.querySelector('#collapseOne .accordion-body');
+          const ul = document.createElement('ul');
+          usuarios.forEach(usuario => {
+              const li = document.createElement('li');
+              li.textContent = usuario;
+              const button = document.createElement('button');
+              button.textContent = 'Eliminar';
+              button.classList.add('btn', 'btn-danger', 'ms-3');
+              button.onclick = () => eliminarUsuario(usuario, codigoSala);
+              li.appendChild(button);
+              ul.appendChild(li);
+          });
+          accordionBody.appendChild(ul);
+      } else {
+          console.error('Error:', data.error);
+      }
+  })
+  .catch(error => {
+      console.error('Error:', error);
+  });
 }
 
 
