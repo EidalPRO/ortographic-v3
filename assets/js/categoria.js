@@ -398,13 +398,17 @@ if (codigo === 'A0123' || codigoSala === 'A0123') {
 
 
 } else {
+  codigoSala = localStorage.getItem('codigoSala');
+  const codigoSalaElement = document.getElementById('sala');
+  codigoSalaElement.innerText = "Sala: " + codigoSala;
 
   const admin = document.getElementById('admin');
 
   const btn_admi = document.getElementById('btn-admin');
 
   window.onload = () => {
-    obtenerAdministrador(codigo);
+    obtenerAdministrador(codigoSala);
+    obtenerUsuarios(codigoSala);
   }
 
   t1.addEventListener("click", function () {
@@ -469,13 +473,12 @@ if (codigo === 'A0123' || codigoSala === 'A0123') {
   }
 
 
-  var nombre = localStorage.getItem('admin');
-  admin.innerText = "Administrador: " + nombre;
+  // var nombre = localStorage.getItem('admin');
+  // admin.innerText = "Administrador: " + nombre;
   var esAdministrador = localStorage.getItem('esAdmin');
-  if (esAdministrador === 'true') {
+  if (esAdministrador == 'true') {
     btn_admi.innerText = "Administrar sala";
   }
-
 
 }
 
@@ -496,7 +499,8 @@ function obtenerAdministrador(codigoSala) {
       if (data.success) {
         // console.log('Nombre del Administrador:', data.);
         localStorage.setItem('admin', data.nombreAdministrador);
-        esAdmin(codigo);
+        admin.innerText = "Administrador: " + data.nombreAdministrador;
+        esAdmin(codigoSala);
       } else {
         console.log("¿Qué haces por aquí?");
         // console.error('Error:', data.error);
@@ -522,9 +526,10 @@ function esAdmin(codigoSala) {
     .then(data => {
       if (data.success) {
         console.log('Es administrador:', data.esAdmin);
-        if (data.esAdmin) {
+        if (data.esAdmin)
           localStorage.setItem('esAdmin', 'true');
-        }
+        else
+          localStorage.setItem('esAdmin', 'false');
       } else {
         console.error('Error:', data.error);
       }
@@ -535,42 +540,84 @@ function esAdmin(codigoSala) {
 }
 
 function obtenerUsuarios(codigoSala) {
-  fetch('administrar.php', {
-      method: 'POST',
-      headers: {
-          'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-          action: 'obtenerUsuarios',
-          codigoSala: codigoSala
-      })
+  fetch('bd/administrar.php', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      action: 'obtener',
+      codigoSala: codigoSala
+    })
   })
-  .then(response => response.json())
-  .then(data => {
+    .then(response => response.json())
+    .then(data => {
       if (data.success) {
-          const usuarios = data.usuarios;
-          const accordionBody = document.querySelector('#collapseOne .accordion-body');
-          const ul = document.createElement('ul');
-          usuarios.forEach(usuario => {
-              const li = document.createElement('li');
-              li.textContent = usuario;
-              const button = document.createElement('button');
-              button.textContent = 'Eliminar';
-              button.classList.add('btn', 'btn-danger', 'ms-3');
-              button.onclick = () => eliminarUsuario(usuario, codigoSala);
-              li.appendChild(button);
-              ul.appendChild(li);
-          });
-          accordionBody.appendChild(ul);
+        const usuarios = data.usuarios;
+        const accordionBody = document.querySelector('#collapseOne .accordion-body');
+        accordionBody.innerHTML = ''; // Limpiar contenido previo
+        const ul = document.createElement('ul');
+        ul.classList.add('list-group'); // Añadimos clase de Bootstrap para listas
+        usuarios.forEach(usuario => {
+          const li = document.createElement('li');
+          li.classList.add('list-group-item', 'd-flex', 'justify-content-between', 'align-items-center');
+          li.textContent = usuario;
+          const button = document.createElement('a');
+          button.textContent = 'Eliminar';
+          button.classList.add('btn', 'btn-danger');
+          button.onclick = () => confirmarEliminacion(usuario, codigoSala, li);
+          li.appendChild(button);
+          ul.appendChild(li);
+        });
+        accordionBody.appendChild(ul);
       } else {
-          console.error('Error:', data.error);
+        console.error('Error:', data.error);
       }
-  })
-  .catch(error => {
+    })
+    .catch(error => {
       console.error('Error:', error);
+    });
+}
+
+function confirmarEliminacion(usuario, codigoSala, listItem) {
+  Swal.fire({
+    title: '¿Estás seguro?',
+    text: `¿Seguro que quieres eliminar al usuario ${usuario}? Todo su progreso se perdera.`,
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonText: 'Sí, eliminar',
+    cancelButtonText: 'Cancelar'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      eliminarUsuario(usuario, codigoSala, listItem);
+    }
   });
 }
 
+function eliminarUsuario(usuario, codigoSala, listItem) {
+  fetch('bd/administrar.php', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      action: 'eliminarUsuario',
+      usuario: usuario,
+      codigoSala: codigoSala
+    })
+  })
+    .then(response => response.json())
+    .then(data => {
+      if (data.success) {
+        listItem.remove(); // Eliminar el elemento de la lista del DOM
+      } else {
+        console.error('Error:', data.error);
+      }
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+}
 
 // console.log('Ronda:', ronda);
 // console.log('Logro:', logro);
